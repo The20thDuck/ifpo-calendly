@@ -1,0 +1,14 @@
+{
+  "name": "button",
+  "version": "1.0.0",
+  "description": "Automate Calendly button click with Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Warren Sunada-Wong",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^5.2.1"
+  }
+}
