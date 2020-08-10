@@ -2,7 +2,12 @@ const puppeteer = require('puppeteer');
 
 async function login (email, password) {
     // console.log(`${email} ${password}`);
-    const browser = await puppeteer.launch();//{headless: false});
+    const browser = await puppeteer.launch(  {
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+        ],
+    });
     const page = await browser.newPage();
     await page.goto('https://calendly.com/login', {waitUntil: 'networkidle2'});
 
