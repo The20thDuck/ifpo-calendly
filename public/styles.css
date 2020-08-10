@@ -59,6 +59,7 @@ p {
 
 h2 {
     font-size: 25px;
+    margin: 20px;
 }
 
 h1 {
@@ -154,3 +155,20 @@ a, a:visited {
     margin-left: -12px;
     margin-right: 8px;
   }
+
+li {
+    padding: 3px;
+}
+
+.list {
+    font-size: 20px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.underline {
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
