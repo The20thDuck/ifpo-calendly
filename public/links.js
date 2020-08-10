@@ -7,10 +7,11 @@ xhttp.onreadystatechange = function() {
             const div = document.createElement('div');
             div.setAttribute("class", "gridItem");
             
-            const title = document.createElement('h3');
+            const title = document.createElement('h2');
             title.innerText = `${element.name}`
             const info = document.createElement('p');
-            info.innerText = `${element.kind_description}`;
+            info.innerText = `${element.duration_minutes} min, ${element.kind_description}`;
+            info.setAttribute("class", "orange");
             
             const linkGen = document.createElement('div');
     
@@ -24,11 +25,17 @@ xhttp.onreadystatechange = function() {
             number.setAttribute('class', `number`)
 
             const button = document.createElement('button');
+            const spinner = document.createElement('i');
+            button.appendChild(spinner);
+            const span = document.createElement('span');
+            span.innerText="Generate"
+            button.appendChild(span);
+
             button.setAttribute('id', `button${element.id}`);
-            button.innerText = 'Generate';
+            // button.innerText = 'Generate';
             button.onclick = () => {
+                spinner.setAttribute('class', 'fa fa-spinner fa-spin');
                 // alert(number.value);
-                document.getElementById("loading").innerText = "Loading...";
                 let linkXhttp = new XMLHttpRequest();
                 linkXhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -41,8 +48,11 @@ xhttp.onreadystatechange = function() {
                         document.body.appendChild(download); // Required for FF
                         
                         download.click();
+                        spinner.setAttribute('class', '');
                     }
-                    document.getElementById("loading").innerText = "";
+                    else if (this.readyState == 4) {
+                        spinner.setAttribute('class', '');
+                    }
                 };
                 body = {
                     action: "genLinks",
@@ -55,12 +65,12 @@ xhttp.onreadystatechange = function() {
                 linkXhttp.send(JSON.stringify(body));
             };
 
+            linkGen.appendChild(info);
             linkGen.appendChild(textLabel);
             linkGen.appendChild(number);
             linkGen.appendChild(button);
             
             div.appendChild(title);
-            div.appendChild(info);
             div.appendChild(linkGen);
             container.appendChild(div)
         })

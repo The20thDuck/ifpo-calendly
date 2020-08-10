@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="links.css">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <h1>Link Generator</h1>
-        <h2>Choose an event and generate links:</h2>
-        <p id="loading"></p>
+        <div class="topbar">
+            <img src="logo.jpg">
+            <h1>Calendly Scheduling Tool</h1>
+            <p>Choose an <a href="https://calendly.com/event_types/user/me" target="_blank">event type</a>, enter the number of families (1-500), and press generate to download a csv file with unique Calendly links. </p>
+            <p id='#error'></p>
+        </div>
         <div id="container"></div>
+        <a class="bottom" href="https://www.orangesfoodpantry.org/" target="_blank">The Interfaith Food Pantry of the Oranges</a>
     </body>
     <script src="links.js"></script>
 </html>

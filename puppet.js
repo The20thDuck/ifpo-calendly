@@ -16,6 +16,18 @@ async function login (email, password) {
     await page.$eval('input[name=email]', (el, email) => el.value = email, email);
     await page.click('input[type="submit"]');
 
+    // Validate email
+    await page.waitFor(() => {
+        let a = document.querySelector('input[name=password]');
+        let b = document.querySelector("div.error-message");
+        return !!a || (!!b && !!(b.innerText));
+    });
+    if ((await page.$$('input[name=password]')).length == 0) {
+        console.log('bad login');
+        await browser.close();
+        return false;
+    }
+
     // Enter password
     await page.waitFor('input[name=password]');
     await page.$eval('input[name=password]', (el, password) => el.value = password, password);
