@@ -18,3 +18,14 @@ fetch("https://calendly.com/api/event_type_single_use_links", {
   .then(res => res.json())
   .then(json => console.log(json));
 
+fetch("https://calendly.com/api/users/me/event_types", {
+  headers: {
+    "content-Type": "application/json",
+    "cookie": `_calendly_session=${session}`,
+    "x-Csrf-Token": csrf
+  },
+  method: "GET"
+})
+.then(res => res.json())
+.then(json => console.log(json.results[0].event_types));
+
