@@ -127,8 +127,9 @@ button:hover, input.button:hover {
     cursor: pointer;
 }
 
-a {
-    text-decoration: none;
+a, a:visited {
+    /* text-decoration: none; */
+    color: blue;
 }
 
 .bottom {
