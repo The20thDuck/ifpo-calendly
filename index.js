@@ -18,7 +18,20 @@ app.use(cookieParser());
 
 const port = process.env.PORT || 5000
 
-app.use(express.static(path.join(__dirname, "public")))
+
+
+
+app.get('/links.html', function(req,res){
+  console.log(`Cookies: ${req.cookies._calendly_session}`);
+  if (!!req.cookies._calendly_session && !!req.cookies["X-CSRF-Token"]) {
+    res.sendFile(__dirname + "/public/links.html");
+  }
+  else {
+    res.redirect('/');
+  }
+})
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.post('/', async function(req, res){
   if(!req.body.email || !req.body.password){
