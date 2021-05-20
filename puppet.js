@@ -9,19 +9,28 @@ async function login (email, password) {
         ],
     });
     const page = await browser.newPage();
-    await page.goto('https://calendly.com/login', {waitUntil: 'networkidle2'});
+    await page.goto(`https://calendly.com/app/login?email=${encodeURIComponent(email)}`, {waitUntil: 'networkidle2'});
 
+    /*
+    await page.goto('https://calendly.com/login', {waitUntil: 'networkidle2'});
     // Enter email
     await page.waitFor('input[name=email]');
     await page.$eval('input[name=email]', (el, email) => el.value = email, email);
-    await page.click('input[type="submit"]');
-
+    await page.click('button[type="submit"]');
+    console.log("button clicked")
+    // const data = await page.evaluate(() => document.querySelector('*').outerHTML);
+    // console.log(data);
+*/
     // Validate email
+    
     await page.waitFor(() => {
         let a = document.querySelector('input[name=password]');
         let b = document.querySelector("div.error-message");
+        // return true;
         return !!a || (!!b && !!(b.innerText));
     });
+    console.log("waiting");
+    // console.log(await page.$$('input[name=password]'));
     if ((await page.$$('input[name=password]')).length == 0) {
         console.log('bad login');
         await browser.close();
@@ -64,6 +73,7 @@ async function login (email, password) {
     
 module.exports.login = login;
 
+// login("ifporanges@gmail.com", "FoodPantry1");
 // login("warren.sunada.wong@gmail.com", "Foodpantry1");
 // export async function getLink(ind) {
 //     // Get single-use link for event 2
