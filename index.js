@@ -73,7 +73,7 @@ app.post('/requests', async function(req, res) {
           for (let i = 0; i < max; i++) {
             let link = await requests.genLink(session, csrf, req.body.event_id);
             // console.log(link);
-            links.push(link.booking_url);
+            links.push(link.booking_url.substring(8)); // Remove https
           }
           res.send(JSON.stringify(links));
         }
